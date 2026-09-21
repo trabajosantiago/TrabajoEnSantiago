@@ -91,16 +91,50 @@
       color: var(--text-main);
     }
 
+    /* Contenedor de filtros con flechas para PC */
+    .filters-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 12px 0 8px;
+    }
+
     .filters-scroll {
       display: flex;
       gap: 8px;
       overflow-x: auto;
-      padding: 16px 0 12px;
+      padding: 6px 0;
       scrollbar-width: none;
+      scroll-behavior: smooth;
+      flex: 1;
     }
 
     .filters-scroll::-webkit-scrollbar {
       display: none;
+    }
+
+    .scroll-arrow {
+      background: white;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .scroll-arrow:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
     }
 
     .filter-btn {
@@ -114,6 +148,7 @@
       white-space: nowrap;
       cursor: pointer;
       transition: all 0.2s ease;
+      flex-shrink: 0;
     }
 
     .filter-btn.active {
@@ -267,18 +302,24 @@
       <input type="text" id="searchInput" placeholder="Buscar por cargo, empresa o palabra clave...">
     </div>
 
-    <!-- Filtros de categoría -->
-    <div class="filters-scroll">
-      <button class="filter-btn active" data-cat="all">Todas</button>
-      <button class="filter-btn" data-cat="Comercial">Comercial / Ventas</button>
-      <button class="filter-btn" data-cat="Salud">Salud</button>
-      <button class="filter-btn" data-cat="TECNICO">Técnicos</button>
-      <button class="filter-btn" data-cat="Logistica">Logística</button>
-      <button class="filter-btn" data-cat="Administrativo">Administrativo</button>
-      <button class="filter-btn" data-cat="Gastronomía">Gastronomía</button>
-      <button class="filter-btn" data-cat="Educación">Educación</button>
-      <button class="filter-btn" data-cat="Construcción">Construcción</button>
-      <button class="filter-btn" data-cat="Otros">Otros</button>
+    <!-- Filtros de categoría con flechas de desplazamiento -->
+    <div class="filters-wrapper">
+      <button class="scroll-arrow" id="scrollLeft" title="Desplazar a la izquierda">‹</button>
+      
+      <div class="filters-scroll" id="filtersScroll">
+        <button class="filter-btn active" data-cat="all">Todas</button>
+        <button class="filter-btn" data-cat="Comercial">Comercial / Ventas</button>
+        <button class="filter-btn" data-cat="Salud">Salud</button>
+        <button class="filter-btn" data-cat="TECNICO">Técnicos</button>
+        <button class="filter-btn" data-cat="Logistica">Logística</button>
+        <button class="filter-btn" data-cat="Administrativo">Administrativo</button>
+        <button class="filter-btn" data-cat="Gastronomía">Gastronomía</button>
+        <button class="filter-btn" data-cat="Educación">Educación</button>
+        <button class="filter-btn" data-cat="Construcción">Construcción</button>
+        <button class="filter-btn" data-cat="Otros">Otros</button>
+      </div>
+
+      <button class="scroll-arrow" id="scrollRight" title="Desplazar a la derecha">›</button>
     </div>
 
     <!-- Contador de vacantes -->
@@ -317,6 +358,7 @@
       'tecnico': '#00CED1',
       'técnico': '#00CED1',
       'mantenimiento': '#00CED1',
+      'mantencion': '#00CED1',
       'logistica': '#D4AC0D',
       'logística': '#D4AC0D',
       'bodega': '#D4AC0D',
@@ -339,43 +381,6 @@
     let activeCategory = 'all';
     let searchQuery = '';
 
-    // Función inteligente para detectar cualquier nombre de columna de tu hoja
-    function parseJob(raw) {
-      const normalized = {};
-      for (const key in raw) {
-        const clean = String(key || '')
-          .toLowerCase()
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "")
-          .trim();
-        normalized[clean] = raw[key];
-      }
-
-      const cargo = normalized['cargo'] || normalized['puesto'] || normalized['titulo'] || normalized['empleo'] || normalized['vacante'] || normalized['nombre del cargo'] || 'Oferta laboral';
-      const empresa = normalized['empresa'] || normalized['compania'] || 'Empresa confidencial';
-      const cat = normalized['cat'] || normalized['categoria'] || normalized['rubro'] || normalized['area'] || 'Otros';
-      const fecha = normalized['fecha'] || normalized['date'] || normalized['dia'] || '';
-
-      // Busca cualquier columna que contenga link, url, enlace o postula
-      let url = normalized['url'] || normalized['link'] || normalized['enlace'] || '';
-      if (!url) {
-        for (const k in normalized) {
-          if (k.includes('link') || k.includes('postula') || k.includes('url')) {
-            url = normalized[k];
-            break;
-          }
-        }
-      }
-
-      return {
-        cargo: String(cargo).trim(),
-        empresa: String(empresa).trim(),
-        cat: String(cat).trim(),
-        url: String(url || '').trim(),
-        fecha: String(fecha).trim()
-      };
-    }
-
     function getCategoryColor(cat) {
       const lower = String(cat || '').toLowerCase();
       for (const [key, color] of Object.entries(CAT_COLORS)) {
@@ -389,9 +394,7 @@
       const noResults = document.getElementById('noResults');
       const jobCount = document.getElementById('jobCount');
 
-      const parsedJobs = jobsData.map(parseJob);
-
-      const filtered = parsedJobs.filter(job => {
+      const filtered = jobsData.filter(job => {
         const text = `${job.cargo} ${job.empresa} ${job.cat}`.toLowerCase();
         const matchSearch = text.includes(searchQuery);
         const matchCategory = activeCategory === 'all' || 
@@ -438,7 +441,7 @@
       renderJobs();
     });
 
-    // Filtros
+    // Filtros de categoría
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -446,6 +449,23 @@
         activeCategory = btn.dataset.cat;
         renderJobs();
       });
+    });
+
+    // Control de flechas para desplazar categorías en PC
+    const scrollContainer = document.getElementById('filtersScroll');
+    document.getElementById('scrollLeft').addEventListener('click', () => {
+      scrollContainer.scrollBy({ left: -220, behavior: 'smooth' });
+    });
+    document.getElementById('scrollRight').addEventListener('click', () => {
+      scrollContainer.scrollBy({ left: 220, behavior: 'smooth' });
+    });
+
+    // Soporte para rueda del mouse en PC sobre las categorías
+    scrollContainer.addEventListener('wheel', (e) => {
+      if (e.deltaY !== 0) {
+        e.preventDefault();
+        scrollContainer.scrollLeft += e.deltaY;
+      }
     });
 
     // Carga de datos desde Apps Script
