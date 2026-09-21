@@ -308,7 +308,6 @@
   </main>
 
   <script>
-    // URL generada de tu aplicación web de Apps Script para Santiago:
     const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwI86L8yxSr3gWn7ycNePNroIRG55_MYnEEQ8Kp-4c03lSNO8b0rGZADiiTwcuB2O3NRQ/exec";
 
     const CAT_COLORS = {
@@ -340,6 +339,43 @@
     let activeCategory = 'all';
     let searchQuery = '';
 
+    // Función inteligente para detectar cualquier nombre de columna de tu hoja
+    function parseJob(raw) {
+      const normalized = {};
+      for (const key in raw) {
+        const clean = String(key || '')
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .trim();
+        normalized[clean] = raw[key];
+      }
+
+      const cargo = normalized['cargo'] || normalized['puesto'] || normalized['titulo'] || normalized['empleo'] || normalized['vacante'] || normalized['nombre del cargo'] || 'Oferta laboral';
+      const empresa = normalized['empresa'] || normalized['compania'] || 'Empresa confidencial';
+      const cat = normalized['cat'] || normalized['categoria'] || normalized['rubro'] || normalized['area'] || 'Otros';
+      const fecha = normalized['fecha'] || normalized['date'] || normalized['dia'] || '';
+
+      // Busca cualquier columna que contenga link, url, enlace o postula
+      let url = normalized['url'] || normalized['link'] || normalized['enlace'] || '';
+      if (!url) {
+        for (const k in normalized) {
+          if (k.includes('link') || k.includes('postula') || k.includes('url')) {
+            url = normalized[k];
+            break;
+          }
+        }
+      }
+
+      return {
+        cargo: String(cargo).trim(),
+        empresa: String(empresa).trim(),
+        cat: String(cat).trim(),
+        url: String(url || '').trim(),
+        fecha: String(fecha).trim()
+      };
+    }
+
     function getCategoryColor(cat) {
       const lower = String(cat || '').toLowerCase();
       for (const [key, color] of Object.entries(CAT_COLORS)) {
@@ -353,7 +389,9 @@
       const noResults = document.getElementById('noResults');
       const jobCount = document.getElementById('jobCount');
 
-      const filtered = jobsData.filter(job => {
+      const parsedJobs = jobsData.map(parseJob);
+
+      const filtered = parsedJobs.filter(job => {
         const text = `${job.cargo} ${job.empresa} ${job.cat}`.toLowerCase();
         const matchSearch = text.includes(searchQuery);
         const matchCategory = activeCategory === 'all' || 
@@ -414,11 +452,6 @@
     async function loadJobs() {
       const loadingState = document.getElementById('loadingState');
       const jobList = document.getElementById('jobList');
-
-      if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.includes("PEGA_AQUI")) {
-        loadingState.innerHTML = '<p style="color: #DC2626;">⚠️ Falta configurar la URL de Apps Script en el código HTML.</p>';
-        return;
-      }
 
       try {
         const res = await fetch(APPS_SCRIPT_URL);
