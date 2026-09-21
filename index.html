@@ -3,24 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Trabajo en Santiago | Ofertas Laborales</title>
-
-  <meta
-    name="description"
-    content="Portal de ofertas de empleo y vacantes laborales en Santiago."
-  >
-
+  <title>Trabajo en Santiago | Ofertas Laborales Actualizadas</title>
+  <meta name="description" content="Portal de ofertas de empleo y vacantes laborales en Santiago y la Región Metropolitana.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-
     :root {
       --primary: #1565D8;
       --bg: #F4F6F9;
@@ -44,17 +33,8 @@
       padding-bottom: 60px;
     }
 
-    /* =========================
-       ENCABEZADO
-       ========================= */
-
     header {
-      background: linear-gradient(
-        135deg,
-        #0F172A 0%,
-        #1E3A8A 100%
-      );
-
+      background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 100%);
       color: white;
       padding: 30px 20px 24px;
       text-align: center;
@@ -87,32 +67,20 @@
       font-size: 0.95rem;
     }
 
-    /* =========================
-       CONTENEDOR
-       ========================= */
-
     .container {
       max-width: 780px;
       margin: -18px auto 0;
       padding: 0 16px;
     }
 
-    /* =========================
-       BUSCADOR
-       ========================= */
-
     .search-box {
       background: var(--card-bg);
       padding: 12px 16px;
       border-radius: 14px;
-
-      box-shadow:
-        0 4px 14px rgba(0, 0, 0, 0.08);
-
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
       display: flex;
       align-items: center;
       gap: 10px;
-
       border: 1px solid var(--border);
     }
 
@@ -120,28 +88,16 @@
       width: 100%;
       border: none;
       outline: none;
-
       font-size: 1rem;
       color: var(--text-main);
-
-      background: transparent;
     }
-
-    /* =========================
-       CATEGORÍAS
-       ========================= */
 
     .filters-scroll {
       display: flex;
       gap: 8px;
-
       overflow-x: auto;
-
       padding: 16px 0 12px;
-
       scrollbar-width: none;
-
-      -webkit-overflow-scrolling: touch;
     }
 
     .filters-scroll::-webkit-scrollbar {
@@ -149,175 +105,100 @@
     }
 
     .filter-btn {
-      flex: 0 0 auto;
-
       background: white;
-
       border: 1px solid var(--border);
-
       padding: 8px 14px;
-
       border-radius: 20px;
-
       font-size: 0.82rem;
-
       font-weight: 600;
-
       color: var(--text-muted);
-
       white-space: nowrap;
-
       cursor: pointer;
-
       transition: all 0.2s ease;
     }
 
     .filter-btn.active {
       background: var(--primary);
-
       color: white;
-
       border-color: var(--primary);
     }
 
-    /* =========================
-       CONTADOR
-       ========================= */
-
     .stats-bar {
       display: flex;
-
       justify-content: space-between;
-
       align-items: center;
-
       margin: 10px 4px 16px;
-
       font-size: 0.85rem;
-
       color: var(--text-muted);
-
       font-weight: 500;
     }
 
-    /* =========================
-       LISTADO
-       ========================= */
-
     .job-list {
       display: flex;
-
       flex-direction: column;
-
       gap: 12px;
     }
 
-    /* =========================
-       TARJETA
-       ========================= */
-
     .job-card {
       background: var(--card-bg);
-
       border-radius: 14px;
-
       padding: 16px 18px;
-
       border: 1px solid var(--border);
-
-      box-shadow:
-        0 2px 6px rgba(0, 0, 0, 0.03);
-
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
       display: flex;
-
       flex-direction: column;
-
       gap: 10px;
     }
 
     .card-top {
       display: flex;
-
       justify-content: space-between;
-
       align-items: center;
-
-      gap: 10px;
     }
 
     .cat-tag {
       font-size: 0.75rem;
-
       font-weight: 700;
-
       color: white;
-
       padding: 4px 10px;
-
       border-radius: 6px;
-
       text-transform: uppercase;
-
       letter-spacing: 0.4px;
     }
 
     .job-date {
       font-size: 0.78rem;
-
       color: var(--text-muted);
-
       font-weight: 600;
     }
 
     .job-title {
       font-size: 1.05rem;
-
       font-weight: 700;
-
       color: var(--text-main);
-
       line-height: 1.35;
     }
 
     .job-company {
       font-size: 0.88rem;
-
       color: var(--text-muted);
-
       display: flex;
-
       align-items: center;
-
       gap: 6px;
     }
 
-    /* =========================
-       BOTÓN POSTULAR
-       ========================= */
-
     .postular-btn {
       display: block;
-
       width: 100%;
-
       text-align: center;
-
       background: #1D4ED8;
-
       color: white;
-
       text-decoration: none;
-
       font-weight: 700;
-
       font-size: 0.92rem;
-
       padding: 12px;
-
       border-radius: 10px;
-
       margin-top: 4px;
-
       transition: background 0.2s ease;
     }
 
@@ -325,43 +206,20 @@
       background: #1E40AF;
     }
 
-    /* =========================
-       SIN RESULTADOS
-       ========================= */
-
-    .no-results {
-      text-align: center;
-
-      padding: 50px 20px;
-
-      color: var(--text-muted);
-    }
-
-    /* =========================
-       CARGANDO
-       ========================= */
-
+    .no-results,
     .loading-state {
       text-align: center;
-
       padding: 50px 20px;
-
       color: var(--text-muted);
     }
 
     .spinner {
       width: 36px;
-
       height: 36px;
-
       border: 3px solid #E2E8F0;
-
       border-top-color: var(--primary);
-
       border-radius: 50%;
-
       animation: spin 0.8s linear infinite;
-
       margin: 0 auto 16px;
     }
 
@@ -371,147 +229,48 @@
       }
     }
 
-    /* =========================
-       FOOTER
-       ========================= */
-
     footer {
       max-width: 680px;
-
       margin: 40px auto 0;
-
       text-align: center;
-
       padding: 0 20px;
-
       font-size: 0.8rem;
-
       color: var(--text-muted);
     }
 
     .disclaimer {
       background: #FEF3C7;
-
       border: 1px solid #FDE68A;
-
       color: #92400E;
-
       padding: 12px 16px;
-
       border-radius: 10px;
-
       margin-bottom: 16px;
-
       line-height: 1.4;
-
       font-size: 0.82rem;
-
       text-align: left;
     }
-
-    /* =========================
-       CELULAR
-       ========================= */
-
-    @media (max-width: 600px) {
-
-      header {
-        padding: 26px 16px 22px;
-      }
-
-      header h1 {
-        font-size: 1.55rem;
-      }
-
-      header p {
-        font-size: 0.88rem;
-      }
-
-      .container {
-        padding: 0 12px;
-      }
-
-      .filter-btn {
-        font-size: 0.8rem;
-
-        padding: 8px 13px;
-      }
-
-      .job-card {
-        padding: 15px;
-      }
-
-      .job-title {
-        font-size: 1rem;
-      }
-
-      .stats-bar {
-        font-size: 0.78rem;
-      }
-    }
-
   </style>
 </head>
 
 <body>
 
-  <!-- =========================
-       ENCABEZADO
-       ========================= -->
-
   <header>
-
     <div class="header-content">
-
-      <div class="badge-top">
-        SANTIAGO Y REGIÓN METROPOLITANA
-      </div>
-
-      <h1>
-        Trabajo en Santiago
-      </h1>
-
-      <p>
-        Encuentra oportunidades laborales en Santiago
-      </p>
-
+      <div class="badge-top">SANTIAGO Y REGIÓN METROPOLITANA</div>
+      <h1>Trabajo en Santiago</h1>
+      <p>Recuerda Tener Precaución en tus postulaciones</p>
     </div>
-
   </header>
-
 
   <main class="container">
 
-    <!-- =========================
-         BUSCADOR
-         ========================= -->
-
+    <!-- Buscador en tiempo real -->
     <div class="search-box">
-
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="#94A3B8"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-
-        <circle
-          cx="11"
-          cy="11"
-          r="8"
-        ></circle>
-
-        <line
-          x1="21"
-          y1="21"
-          x2="16.65"
-          y2="16.65"
-        ></line>
-
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+           stroke="#94A3B8" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
       </svg>
 
       <input
@@ -519,495 +278,296 @@
         id="searchInput"
         placeholder="Buscar por cargo, empresa o palabra clave..."
       >
-
     </div>
 
-
-    <!-- =========================
-         CATEGORÍAS
-         ========================= -->
-
+    <!-- Filtros de categoría -->
     <div class="filters-scroll">
 
-      <button
-        class="filter-btn active"
-        data-cat="all"
-      >
+      <button class="filter-btn active" data-cat="all">
         Todas
       </button>
 
-      <button
-        class="filter-btn"
-        data-cat="Logística"
-      >
+      <button class="filter-btn" data-cat="Logística">
         Logística
       </button>
 
-      <button
-        class="filter-btn"
-        data-cat="Administración"
-      >
+      <button class="filter-btn" data-cat="Administración">
         Administración
       </button>
 
-      <button
-        class="filter-btn"
-        data-cat="Retail"
-      >
+      <button class="filter-btn" data-cat="Retail">
         Retail
       </button>
 
-      <button
-        class="filter-btn"
-        data-cat="Comercial"
-      >
+      <button class="filter-btn" data-cat="Comercial">
         Comercial
       </button>
 
-      <button
-        class="filter-btn"
-        data-cat="Gastronomía"
-      >
+      <button class="filter-btn" data-cat="Gastronomía">
         Gastronomía
       </button>
 
-      <button
-        class="filter-btn"
-        data-cat="Mantenimiento"
-      >
+      <button class="filter-btn" data-cat="Mantenimiento">
         Mantenimiento
       </button>
 
-      <button
-        class="filter-btn"
-        data-cat="Otros"
-      >
+      <button class="filter-btn" data-cat="Otros">
         Otros
       </button>
 
     </div>
 
-
-    <!-- =========================
-         CONTADOR
-         ========================= -->
-
+    <!-- Contador de vacantes -->
     <div class="stats-bar">
-
-      <span id="jobCount">
-        Cargando vacantes...
-      </span>
-
-      <span>
-        Región Metropolitana
-      </span>
-
+      <span id="jobCount">Cargando vacantes...</span>
+      <span>Región Metropolitana</span>
     </div>
 
-
-    <!-- =========================
-         CARGANDO
-         ========================= -->
-
-    <div
-      class="loading-state"
-      id="loadingState"
-    >
-
+    <!-- Estado de carga -->
+    <div class="loading-state" id="loadingState">
       <div class="spinner"></div>
-
-      <p>
-        Cargando ofertas de empleo...
-      </p>
-
+      <p>Cargando todas las ofertas de empleo...</p>
     </div>
 
+    <!-- Listado de Empleos -->
+    <div class="job-list" id="jobList" style="display: none;"></div>
 
-    <!-- =========================
-         TRABAJOS
-         ========================= -->
-
-    <div
-      class="job-list"
-      id="jobList"
-      style="display: none;"
-    ></div>
-
-
-    <!-- =========================
-         SIN RESULTADOS
-         ========================= -->
-
-    <div
-      class="no-results"
-      id="noResults"
-      style="display: none;"
-    >
-
-      <p>
-        No se encontraron vacantes para este criterio de búsqueda.
-      </p>
-
+    <div class="no-results" id="noResults" style="display: none;">
+      <p>No se encontraron vacantes para este criterio de búsqueda.</p>
     </div>
-
-
-    <!-- =========================
-         PIE DE PÁGINA
-         ========================= -->
 
     <footer>
 
       <div class="disclaimer">
-
-        <strong>
-          ⚠️ Información Importante:
-        </strong>
-
-        Nosotros no gestionamos postulaciones,
-        no recibimos currículums ni representamos
-        a las empresas contratantes.
-
-        Nunca transfieras dinero para participar
-        en procesos de selección.
-
+        <strong>⚠️ Información Importante:</strong>
+        Nosotros no gestionamos postulaciones, no recibimos currículums ni
+        representamos a las empresas contratantes. Nunca transfieras dinero
+        para participar en procesos de selección.
       </div>
 
-      <p>
-        © Trabajo en Santiago • Comunidad de empleo
-      </p>
+      <p>© Trabajo en Santiago • Comunidad de empleo</p>
 
     </footer>
 
   </main>
 
-
   <script>
 
-    /* ==================================================
-       DATOS DE PRUEBA
-       
-       ESTOS TRABAJOS SON TEMPORALES.
-       MÁS ADELANTE LOS REEMPLAZAREMOS POR GOOGLE SHEETS.
-       ================================================== */
+    // NUEVA IMPLEMENTACIÓN DE APPS SCRIPT
+    const APPS_SCRIPT_URL =
+      "https://script.google.com/macros/s/AKfycbwI86L8yxSr3gWn7ycNePNroIRG55_MYnEEQ8Kp-4c03lSNO8b0rGZADiiTwcuB2O3NRQ/exec";
 
-    const jobsData = [
-
-      {
-        cargo: "Operario de Bodega",
-        empresa: "Empresa de logística",
-        cat: "Logística",
-        fecha: "Hoy",
-        url: "https://www.google.com/"
-      },
-
-      {
-        cargo: "Asistente Administrativo",
-        empresa: "Empresa de servicios",
-        cat: "Administración",
-        fecha: "Hoy",
-        url: "https://www.google.com/"
-      },
-
-      {
-        cargo: "Vendedor Part Time",
-        empresa: "Empresa de Retail",
-        cat: "Retail",
-        fecha: "Ayer",
-        url: "https://www.google.com/"
-      },
-
-      {
-        cargo: "Ejecutivo Comercial",
-        empresa: "Empresa comercial",
-        cat: "Comercial",
-        fecha: "Hoy",
-        url: "https://www.google.com/"
-      },
-
-      {
-        cargo: "Ayudante de Cocina",
-        empresa: "Restaurante",
-        cat: "Gastronomía",
-        fecha: "Hoy",
-        url: "https://www.google.com/"
-      },
-
-      {
-        cargo: "Técnico de Mantenimiento",
-        empresa: "Empresa industrial",
-        cat: "Mantenimiento",
-        fecha: "Ayer",
-        url: "https://www.google.com/"
-      },
-
-      {
-        cargo: "Guardia de Seguridad",
-        empresa: "Empresa de seguridad",
-        cat: "Otros",
-        fecha: "Hoy",
-        url: "https://www.google.com/"
-      }
-
-    ];
-
-
-    /* ==================================================
-       COLORES DE CATEGORÍAS
-       ================================================== */
 
     const CAT_COLORS = {
 
-      "logistica": "#D4AC0D",
-      "logística": "#D4AC0D",
+      'comercial': '#FF8A00',
+      'ventas': '#FF8A00',
+      'retail': '#FF8A00',
 
-      "administracion": "#1565D8",
-      "administración": "#1565D8",
+      'logistica': '#D4AC0D',
+      'logística': '#D4AC0D',
+      'bodega': '#D4AC0D',
 
-      "retail": "#FF8A00",
+      'administracion': '#1565D8',
+      'administración': '#1565D8',
+      'administrativo': '#1565D8',
+      'oficina': '#1565D8',
+      'rrhh': '#1565D8',
 
-      "comercial": "#FF8A00",
+      'mantenimiento': '#00CED1',
+      'tecnico': '#00CED1',
+      'técnico': '#00CED1',
+      'electricidad': '#00CED1',
 
-      "gastronomia": "#795548",
-      "gastronomía": "#795548",
+      'gastronomia': '#795548',
+      'gastronomía': '#795548',
+      'cocina': '#795548',
 
-      "mantenimiento": "#00A6A6",
-
-      "otros": "#999999"
-
+      'otros': '#999999'
     };
 
 
-    /* ==================================================
-       VARIABLES
-       ================================================== */
-
-    let activeCategory = "all";
-
-    let searchQuery = "";
+    let jobsData = [];
+    let activeCategory = 'all';
+    let searchQuery = '';
 
 
-    /* ==================================================
-       OBTENER COLOR
-       ================================================== */
+    function getCategoryColor(cat) {
 
-    function getCategoryColor(category) {
+      const lower = String(cat || '').toLowerCase();
 
-      const normalized =
-        String(category || "")
-          .toLowerCase()
-          .trim();
+      for (const [key, color] of Object.entries(CAT_COLORS)) {
 
-      return CAT_COLORS[normalized] || "#999999";
-
-    }
-
-
-    /* ==================================================
-       MOSTRAR TRABAJOS
-       ================================================== */
-
-    function renderJobs() {
-
-      const jobList =
-        document.getElementById("jobList");
-
-      const noResults =
-        document.getElementById("noResults");
-
-      const jobCount =
-        document.getElementById("jobCount");
-
-
-      const filtered =
-        jobsData.filter(function(job) {
-
-          const text =
-            `${job.cargo || ""} ${job.empresa || ""} ${job.cat || ""}`
-              .toLowerCase();
-
-          const matchSearch =
-            text.includes(searchQuery);
-
-
-          const matchCategory =
-            activeCategory === "all" ||
-            String(job.cat || "")
-              .toLowerCase()
-              .includes(activeCategory.toLowerCase());
-
-
-          return matchSearch && matchCategory;
-
-        });
-
-
-      /* CONTADOR */
-
-      jobCount.textContent =
-        `${filtered.length} ${
-          filtered.length === 1
-            ? "vacante"
-            : "vacantes"
-        } disponible${
-          filtered.length === 1
-            ? ""
-            : "s"
-        }`;
-
-
-      /* SIN RESULTADOS */
-
-      if (filtered.length === 0) {
-
-        jobList.innerHTML = "";
-
-        jobList.style.display = "none";
-
-        noResults.style.display = "block";
-
-        return;
+        if (lower.includes(key)) {
+          return color;
+        }
 
       }
 
-
-      noResults.style.display = "none";
-
-      jobList.style.display = "flex";
+      return '#999999';
+    }
 
 
-      /* CREAR TARJETAS */
+    function renderJobs() {
 
-      jobList.innerHTML =
-        filtered.map(function(job) {
-
-          const color =
-            getCategoryColor(job.cat);
+      const jobList = document.getElementById('jobList');
+      const noResults = document.getElementById('noResults');
+      const jobCount = document.getElementById('jobCount');
 
 
-          const hasUrl =
-            job.url &&
-            job.url.startsWith("http");
+      const filtered = jobsData.filter(job => {
+
+        const text =
+          `${job.cargo || ''} ${job.empresa || ''} ${job.cat || job.categoria || ''}`
+          .toLowerCase();
+
+        const matchSearch = text.includes(searchQuery);
 
 
-          return `
-
-            <div class="job-card">
-
-              <div class="card-top">
-
-                <span
-                  class="cat-tag"
-                  style="background: ${color};"
-                >
-                  ${job.cat}
-                </span>
-
-                <span class="job-date">
-                  ${job.fecha || ""}
-                </span>
-
-              </div>
+        const category =
+          job.cat || job.categoria || '';
 
 
-              <div class="job-title">
-                ${job.cargo}
-              </div>
+        const matchCategory =
+          activeCategory === 'all' ||
+          category.toLowerCase().includes(activeCategory.toLowerCase());
 
 
-              <div class="job-company">
+        return matchSearch && matchCategory;
 
-                <span>
-                  🏢
-                </span>
-
-                ${job.empresa || "Empresa confidencial"}
-
-              </div>
+      });
 
 
-              ${
-                hasUrl
+      jobCount.textContent =
+        `${filtered.length} vacante${filtered.length === 1 ? '' : 's'} disponible${filtered.length === 1 ? '' : 's'}`;
 
-                  ? `
 
-                    <a
-                      href="${job.url}"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="postular-btn"
-                    >
-                      POSTULAR AL EMPLEO →
-                    </a>
+      if (filtered.length === 0) {
 
-                  `
+        jobList.innerHTML = '';
+        noResults.style.display = 'block';
 
-                  : `
+        return;
+      }
 
-                    <span
-                      class="postular-btn"
-                      style="
-                        background:#94A3B8;
-                        cursor:not-allowed;
-                      "
-                    >
-                      POSTULACIÓN NO DISPONIBLE
-                    </span>
 
-                  `
-              }
+      noResults.style.display = 'none';
+
+
+      jobList.innerHTML = filtered.map(job => {
+
+        const category =
+          job.cat || job.categoria || '';
+
+        const color =
+          getCategoryColor(category);
+
+        const hasUrl =
+          job.url &&
+          job.url.startsWith('http');
+
+
+        return `
+
+          <div class="job-card">
+
+            <div class="card-top">
+
+              <span
+                class="cat-tag"
+                style="background: ${color}"
+              >
+                ${category}
+              </span>
+
+              <span class="job-date">
+                ${job.fecha || ''}
+              </span>
 
             </div>
 
-          `;
 
-        }).join("");
+            <div class="job-title">
+              ${job.cargo || ''}
+            </div>
+
+
+            <div class="job-company">
+
+              <span>🏢</span>
+
+              ${job.empresa || 'Empresa confidencial'}
+
+            </div>
+
+
+            ${
+              hasUrl
+
+              ?
+
+              `<a
+                href="${job.url}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="postular-btn"
+              >
+                POSTULAR AL EMPLEO →
+              </a>`
+
+              :
+
+              `<span
+                class="postular-btn"
+                style="background: #94A3B8; cursor: not-allowed;"
+              >
+                POSTULACIÓN NO DISPONIBLE
+              </span>`
+            }
+
+          </div>
+
+        `;
+
+      }).join('');
 
     }
 
 
-    /* ==================================================
-       BUSCADOR
-       ================================================== */
+    // Buscador
 
     document
-      .getElementById("searchInput")
-      .addEventListener("input", function(event) {
+      .getElementById('searchInput')
+      .addEventListener('input', (e) => {
 
         searchQuery =
-          event.target.value
-            .toLowerCase()
-            .trim();
+          e.target.value.toLowerCase().trim();
 
         renderJobs();
 
       });
 
 
-    /* ==================================================
-       FILTROS DE CATEGORÍA
-       ================================================== */
+    // Filtros
 
     document
-      .querySelectorAll(".filter-btn")
-      .forEach(function(button) {
+      .querySelectorAll('.filter-btn')
+      .forEach(btn => {
 
-        button.addEventListener("click", function() {
-
+        btn.addEventListener('click', () => {
 
           document
-            .querySelectorAll(".filter-btn")
-            .forEach(function(btn) {
-
-              btn.classList.remove("active");
-
-            });
+            .querySelectorAll('.filter-btn')
+            .forEach(b =>
+              b.classList.remove('active')
+            );
 
 
-          button.classList.add("active");
+          btn.classList.add('active');
 
 
           activeCategory =
-            button.dataset.cat;
+            btn.dataset.cat;
 
 
           renderJobs();
@@ -1017,25 +577,81 @@
       });
 
 
-    /* ==================================================
-       INICIAR PÁGINA
-       ================================================== */
+    // Carga de datos desde Apps Script
 
-    setTimeout(function() {
+    async function loadJobs() {
 
-      document
-        .getElementById("loadingState")
-        .style.display = "none";
+      const loadingState =
+        document.getElementById('loadingState');
 
-
-      document
-        .getElementById("jobList")
-        .style.display = "flex";
+      const jobList =
+        document.getElementById('jobList');
 
 
-      renderJobs();
+      if (
+        !APPS_SCRIPT_URL ||
+        APPS_SCRIPT_URL.includes("PEGA_AQUI")
+      ) {
 
-    }, 500);
+        loadingState.innerHTML =
+          '<p style="color: #DC2626;">⚠️ Falta configurar la URL de Apps Script en el código HTML.</p>';
+
+        return;
+      }
+
+
+      try {
+
+        const res =
+          await fetch(APPS_SCRIPT_URL);
+
+
+        const data =
+          await res.json();
+
+
+        if (
+          Array.isArray(data) &&
+          data.length > 0
+        ) {
+
+          jobsData = data;
+
+
+          loadingState.style.display =
+            'none';
+
+
+          jobList.style.display =
+            'flex';
+
+
+          renderJobs();
+
+        }
+
+        else {
+
+          loadingState.innerHTML =
+            '<p>No se encontraron vacantes registradas en la planilla.</p>';
+
+        }
+
+      }
+
+      catch (err) {
+
+        console.error(err);
+
+        loadingState.innerHTML =
+          '<p style="color: #DC2626;">Hubo un problema al cargar las ofertas. Por favor recarga la página.</p>';
+
+      }
+
+    }
+
+
+    loadJobs();
 
   </script>
 
