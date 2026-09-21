@@ -8,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
   <style>
     :root {
       --primary: #1565D8;
@@ -206,8 +205,7 @@
       background: #1E40AF;
     }
 
-    .no-results,
-    .loading-state {
+    .no-results, .loading-state {
       text-align: center;
       padding: 50px 20px;
       color: var(--text-muted);
@@ -224,9 +222,7 @@
     }
 
     @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
+      to { transform: rotate(360deg); }
     }
 
     footer {
@@ -251,7 +247,6 @@
     }
   </style>
 </head>
-
 <body>
 
   <header>
@@ -263,58 +258,27 @@
   </header>
 
   <main class="container">
-
     <!-- Buscador en tiempo real -->
     <div class="search-box">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-           stroke="#94A3B8" stroke-width="2"
-           stroke-linecap="round" stroke-linejoin="round">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="11" cy="11" r="8"></circle>
         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
       </svg>
-
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="Buscar por cargo, empresa o palabra clave..."
-      >
+      <input type="text" id="searchInput" placeholder="Buscar por cargo, empresa o palabra clave...">
     </div>
 
     <!-- Filtros de categoría -->
     <div class="filters-scroll">
-
-      <button class="filter-btn active" data-cat="all">
-        Todas
-      </button>
-
-      <button class="filter-btn" data-cat="Logística">
-        Logística
-      </button>
-
-      <button class="filter-btn" data-cat="Administración">
-        Administración
-      </button>
-
-      <button class="filter-btn" data-cat="Retail">
-        Retail
-      </button>
-
-      <button class="filter-btn" data-cat="Comercial">
-        Comercial
-      </button>
-
-      <button class="filter-btn" data-cat="Gastronomía">
-        Gastronomía
-      </button>
-
-      <button class="filter-btn" data-cat="Mantenimiento">
-        Mantenimiento
-      </button>
-
-      <button class="filter-btn" data-cat="Otros">
-        Otros
-      </button>
-
+      <button class="filter-btn active" data-cat="all">Todas</button>
+      <button class="filter-btn" data-cat="Comercial">Comercial / Ventas</button>
+      <button class="filter-btn" data-cat="Salud">Salud</button>
+      <button class="filter-btn" data-cat="TECNICO">Técnicos</button>
+      <button class="filter-btn" data-cat="Logistica">Logística</button>
+      <button class="filter-btn" data-cat="Administrativo">Administrativo</button>
+      <button class="filter-btn" data-cat="Gastronomía">Gastronomía</button>
+      <button class="filter-btn" data-cat="Educación">Educación</button>
+      <button class="filter-btn" data-cat="Construcción">Construcción</button>
+      <button class="filter-btn" data-cat="Otros">Otros</button>
     </div>
 
     <!-- Contador de vacantes -->
@@ -331,329 +295,150 @@
 
     <!-- Listado de Empleos -->
     <div class="job-list" id="jobList" style="display: none;"></div>
-
     <div class="no-results" id="noResults" style="display: none;">
       <p>No se encontraron vacantes para este criterio de búsqueda.</p>
     </div>
 
     <footer>
-
       <div class="disclaimer">
-        <strong>⚠️ Información Importante:</strong>
-        Nosotros no gestionamos postulaciones, no recibimos currículums ni
-        representamos a las empresas contratantes. Nunca transfieras dinero
-        para participar en procesos de selección.
+        <strong>⚠️ Información Importante:</strong> Nosotros no gestionamos postulaciones, no recibimos currículums ni representamos a las empresas contratantes. Nunca transfieras dinero para participar en procesos de selección.
       </div>
-
-      <p>© Trabajo en Santiago • Comunidad de empleo</p>
-
+      <p>© Trabajo en Santiago • Comunidad de empleo regional</p>
     </footer>
-
   </main>
 
   <script>
-
-    // NUEVA IMPLEMENTACIÓN DE APPS SCRIPT
-    const APPS_SCRIPT_URL =
-      "https://script.google.com/macros/s/AKfycbwI86L8yxSr3gWn7ycNePNroIRG55_MYnEEQ8Kp-4c03lSNO8b0rGZADiiTwcuB2O3NRQ/exec";
-
+    // URL generada de tu aplicación web de Apps Script para Santiago:
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwI86L8yxSr3gWn7ycNePNroIRG55_MYnEEQ8Kp-4c03lSNO8b0rGZADiiTwcuB2O3NRQ/exec";
 
     const CAT_COLORS = {
-
       'comercial': '#FF8A00',
       'ventas': '#FF8A00',
       'retail': '#FF8A00',
-
+      'tecnico': '#00CED1',
+      'técnico': '#00CED1',
+      'mantenimiento': '#00CED1',
       'logistica': '#D4AC0D',
       'logística': '#D4AC0D',
       'bodega': '#D4AC0D',
-
-      'administracion': '#1565D8',
-      'administración': '#1565D8',
       'administrativo': '#1565D8',
       'oficina': '#1565D8',
       'rrhh': '#1565D8',
-
-      'mantenimiento': '#00CED1',
-      'tecnico': '#00CED1',
-      'técnico': '#00CED1',
-      'electricidad': '#00CED1',
-
+      'salud': '#2EAF62',
+      'tens': '#2EAF62',
+      'construccion': '#FF0000',
+      'construcción': '#FF0000',
+      'educacion': '#9C27B0',
+      'educación': '#9C27B0',
       'gastronomia': '#795548',
       'gastronomía': '#795548',
       'cocina': '#795548',
-
       'otros': '#999999'
     };
-
 
     let jobsData = [];
     let activeCategory = 'all';
     let searchQuery = '';
 
-
     function getCategoryColor(cat) {
-
       const lower = String(cat || '').toLowerCase();
-
       for (const [key, color] of Object.entries(CAT_COLORS)) {
-
-        if (lower.includes(key)) {
-          return color;
-        }
-
+        if (lower.includes(key)) return color;
       }
-
       return '#999999';
     }
 
-
     function renderJobs() {
-
       const jobList = document.getElementById('jobList');
       const noResults = document.getElementById('noResults');
       const jobCount = document.getElementById('jobCount');
 
-
       const filtered = jobsData.filter(job => {
-
-        const text =
-          `${job.cargo || ''} ${job.empresa || ''} ${job.cat || job.categoria || ''}`
-          .toLowerCase();
-
+        const text = `${job.cargo} ${job.empresa} ${job.cat}`.toLowerCase();
         const matchSearch = text.includes(searchQuery);
-
-
-        const category =
-          job.cat || job.categoria || '';
-
-
-        const matchCategory =
-          activeCategory === 'all' ||
-          category.toLowerCase().includes(activeCategory.toLowerCase());
-
+        const matchCategory = activeCategory === 'all' || 
+          job.cat.toLowerCase().includes(activeCategory.toLowerCase());
 
         return matchSearch && matchCategory;
-
       });
 
-
-      jobCount.textContent =
-        `${filtered.length} vacante${filtered.length === 1 ? '' : 's'} disponible${filtered.length === 1 ? '' : 's'}`;
-
+      jobCount.textContent = `${filtered.length} vacante${filtered.length === 1 ? '' : 's'} disponible${filtered.length === 1 ? '' : 's'}`;
 
       if (filtered.length === 0) {
-
         jobList.innerHTML = '';
         noResults.style.display = 'block';
-
         return;
       }
-
 
       noResults.style.display = 'none';
-
-
       jobList.innerHTML = filtered.map(job => {
-
-        const category =
-          job.cat || job.categoria || '';
-
-        const color =
-          getCategoryColor(category);
-
-        const hasUrl =
-          job.url &&
-          job.url.startsWith('http');
-
-
+        const color = getCategoryColor(job.cat);
+        const hasUrl = job.url && job.url.startsWith('http');
         return `
-
           <div class="job-card">
-
             <div class="card-top">
-
-              <span
-                class="cat-tag"
-                style="background: ${color}"
-              >
-                ${category}
-              </span>
-
-              <span class="job-date">
-                ${job.fecha || ''}
-              </span>
-
+              <span class="cat-tag" style="background: ${color}">${job.cat}</span>
+              <span class="job-date">${job.fecha || ''}</span>
             </div>
-
-
-            <div class="job-title">
-              ${job.cargo || ''}
-            </div>
-
-
+            <div class="job-title">${job.cargo}</div>
             <div class="job-company">
-
-              <span>🏢</span>
-
-              ${job.empresa || 'Empresa confidencial'}
-
+              <span>🏢</span> ${job.empresa || 'Empresa confidencial'}
             </div>
-
-
             ${
-              hasUrl
-
-              ?
-
-              `<a
-                href="${job.url}"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="postular-btn"
-              >
-                POSTULAR AL EMPLEO →
-              </a>`
-
-              :
-
-              `<span
-                class="postular-btn"
-                style="background: #94A3B8; cursor: not-allowed;"
-              >
-                POSTULACIÓN NO DISPONIBLE
-              </span>`
+              hasUrl ? 
+              `<a href="${job.url}" target="_blank" rel="noopener noreferrer" class="postular-btn">POSTULAR AL EMPLEO →</a>` :
+              `<span class="postular-btn" style="background: #94A3B8; cursor: not-allowed;">POSTULACIÓN NO DISPONIBLE</span>`
             }
-
           </div>
-
         `;
-
       }).join('');
-
     }
 
-
     // Buscador
-
-    document
-      .getElementById('searchInput')
-      .addEventListener('input', (e) => {
-
-        searchQuery =
-          e.target.value.toLowerCase().trim();
-
-        renderJobs();
-
-      });
-
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      searchQuery = e.target.value.toLowerCase().trim();
+      renderJobs();
+    });
 
     // Filtros
-
-    document
-      .querySelectorAll('.filter-btn')
-      .forEach(btn => {
-
-        btn.addEventListener('click', () => {
-
-          document
-            .querySelectorAll('.filter-btn')
-            .forEach(b =>
-              b.classList.remove('active')
-            );
-
-
-          btn.classList.add('active');
-
-
-          activeCategory =
-            btn.dataset.cat;
-
-
-          renderJobs();
-
-        });
-
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCategory = btn.dataset.cat;
+        renderJobs();
       });
-
+    });
 
     // Carga de datos desde Apps Script
-
     async function loadJobs() {
+      const loadingState = document.getElementById('loadingState');
+      const jobList = document.getElementById('jobList');
 
-      const loadingState =
-        document.getElementById('loadingState');
-
-      const jobList =
-        document.getElementById('jobList');
-
-
-      if (
-        !APPS_SCRIPT_URL ||
-        APPS_SCRIPT_URL.includes("PEGA_AQUI")
-      ) {
-
-        loadingState.innerHTML =
-          '<p style="color: #DC2626;">⚠️ Falta configurar la URL de Apps Script en el código HTML.</p>';
-
+      if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.includes("PEGA_AQUI")) {
+        loadingState.innerHTML = '<p style="color: #DC2626;">⚠️ Falta configurar la URL de Apps Script en el código HTML.</p>';
         return;
       }
 
-
       try {
-
-        const res =
-          await fetch(APPS_SCRIPT_URL);
-
-
-        const data =
-          await res.json();
-
-
-        if (
-          Array.isArray(data) &&
-          data.length > 0
-        ) {
-
+        const res = await fetch(APPS_SCRIPT_URL);
+        const data = await res.json();
+        
+        if (Array.isArray(data) && data.length > 0) {
           jobsData = data;
-
-
-          loadingState.style.display =
-            'none';
-
-
-          jobList.style.display =
-            'flex';
-
-
+          loadingState.style.display = 'none';
+          jobList.style.display = 'flex';
           renderJobs();
-
+        } else {
+          loadingState.innerHTML = '<p>No se encontraron vacantes registradas en la planilla.</p>';
         }
-
-        else {
-
-          loadingState.innerHTML =
-            '<p>No se encontraron vacantes registradas en la planilla.</p>';
-
-        }
-
-      }
-
-      catch (err) {
-
+      } catch (err) {
         console.error(err);
-
-        loadingState.innerHTML =
-          '<p style="color: #DC2626;">Hubo un problema al cargar las ofertas. Por favor recarga la página.</p>';
-
+        loadingState.innerHTML = '<p style="color: #DC2626;">Hubo un problema al cargar las ofertas. Por favor recarga la página.</p>';
       }
-
     }
 
-
     loadJobs();
-
   </script>
-
 </body>
 </html>
