@@ -1,0 +1,46 @@
+name: Actualizar ofertas
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: actualizar-ofertas
+  cancel-in-progress: false
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Descargar ofertas desde Apps Script
+        env:
+          # PEGA AQUÍ LA URL DE APPS SCRIPT DE SANTIAGO (la que empieza con https://script.google.com/macros/s/...)
+          APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbwI86L8yxSr3gWn7ycNePNroIRG55_MYnEEQ8Kp-4c03lSNO8b0rGZADiiTwcuB2O3NRQ/exec"
+        run: |
+          curl -sL --retry 3 --max-time 90 "$APPS_SCRIPT_URL" -o nuevo.json
+          python3 - <<'EOF'
+          import json, sys
+          try:
+              d = json.load(open('nuevo.json', encoding='utf-8'))
+          except Exception as e:
+              sys.exit("Respuesta no válida: %s" % e)
+          if not isinstance(d, list) or len(d) == 0:
+              sys.exit("La lista vino vacía, no se actualiza")
+          with open('ofertas.json', 'w', encoding='utf-8') as f:
+              json.dump(d, f, ensure_ascii=False, separators=(',', ':'))
+          print("Ofertas guardadas:", len(d))
+          EOF
+          rm -f nuevo.json
+
+      - name: Guardar cambios
+        run: |
+          git config user.name "actualizador"
+          git config user.email "actualizador@users.noreply.github.com"
+          git add ofertas.json
+          git diff --cached --quiet || (git commit -m "Actualizar ofertas" && git push)
