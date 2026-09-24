@@ -1,497 +1,159 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trabajo en Santiago | Ofertas Laborales Actualizadas</title>
-  <meta name="description" content="Portal de ofertas de empleo y vacantes laborales en Santiago y la Región Metropolitana.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #1565D8;
-      --bg: #F4F6F9;
-      --card-bg: #FFFFFF;
-      --text-main: #1E293B;
-      --text-muted: #64748B;
-      --border: #E2E8F0;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-
-    body {
-      background-color: var(--bg);
-      color: var(--text-main);
-      line-height: 1.5;
-      padding-bottom: 60px;
-    }
-
-    header {
-      background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 100%);
-      color: white;
-      padding: 30px 20px 24px;
-      text-align: center;
-    }
-
-    .header-content {
-      max-width: 680px;
-      margin: 0 auto;
-    }
-
-    .badge-top {
-      display: inline-block;
-      background: rgba(255, 255, 255, 0.15);
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      margin-bottom: 10px;
-      letter-spacing: 0.5px;
-    }
-
-    header h1 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    header p {
-      color: #94A3B8;
-      font-size: 0.95rem;
-    }
-
-    .container {
-      max-width: 780px;
-      margin: -18px auto 0;
-      padding: 0 16px;
-    }
-
-    .search-box {
-      background: var(--card-bg);
-      padding: 12px 16px;
-      border-radius: 14px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border: 1px solid var(--border);
-    }
-
-    .search-box input {
-      width: 100%;
-      border: none;
-      outline: none;
-      font-size: 1rem;
-      color: var(--text-main);
-    }
-
-    /* Contenedor de filtros con flechas para PC */
-    .filters-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin: 12px 0 8px;
-    }
-
-    .filters-scroll {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding: 6px 0;
-      scrollbar-width: none;
-      scroll-behavior: smooth;
-      flex: 1;
-    }
-
-    .filters-scroll::-webkit-scrollbar {
-      display: none;
-    }
-
-    .scroll-arrow {
-      background: white;
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.25rem;
-      cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-      flex-shrink: 0;
-      transition: all 0.2s ease;
-      user-select: none;
-    }
-
-    .scroll-arrow:hover {
-      background: var(--primary);
-      color: white;
-      border-color: var(--primary);
-    }
-
-    .filter-btn {
-      background: white;
-      border: 1px solid var(--border);
-      padding: 8px 14px;
-      border-radius: 20px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      white-space: nowrap;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      flex-shrink: 0;
-    }
-
-    .filter-btn.active {
-      background: var(--primary);
-      color: white;
-      border-color: var(--primary);
-    }
-
-    .stats-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 10px 4px 16px;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    .job-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .job-card {
-      background: var(--card-bg);
-      border-radius: 14px;
-      padding: 16px 18px;
-      border: 1px solid var(--border);
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .card-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .cat-tag {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: white;
-      padding: 4px 10px;
-      border-radius: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
-    }
-
-    .job-date {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      font-weight: 600;
-    }
-
-    .job-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text-main);
-      line-height: 1.35;
-    }
-
-    .job-company {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .postular-btn {
-      display: block;
-      width: 100%;
-      text-align: center;
-      background: #1D4ED8;
-      color: white;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.92rem;
-      padding: 12px;
-      border-radius: 10px;
-      margin-top: 4px;
-      transition: background 0.2s ease;
-    }
-
-    .postular-btn:hover {
-      background: #1E40AF;
-    }
-
-    .no-results, .loading-state {
-      text-align: center;
-      padding: 50px 20px;
-      color: var(--text-muted);
-    }
-
-    .spinner {
-      width: 36px;
-      height: 36px;
-      border: 3px solid #E2E8F0;
-      border-top-color: var(--primary);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-      margin: 0 auto 16px;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    footer {
-      max-width: 680px;
-      margin: 40px auto 0;
-      text-align: center;
-      padding: 0 20px;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .disclaimer {
-      background: #FEF3C7;
-      border: 1px solid #FDE68A;
-      color: #92400E;
-      padding: 12px 16px;
-      border-radius: 10px;
-      margin-bottom: 16px;
-      line-height: 1.4;
-      font-size: 0.82rem;
-      text-align: left;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trabajo en Santiago | Ofertas Laborales Actualizadas</title>
+<meta name="description" content="Portal de ofertas de empleo y vacantes laborales en Santiago y la Región Metropolitana.">
+<link rel="preload" href="ofertas.json" as="fetch" crossorigin>
+<style>
+:root{--primary:#1565D8;--bg:#F4F6F9;--card:#fff;--text:#1E293B;--muted:#64748B;--border:#E2E8F0}
+*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+body{background:var(--bg);color:var(--text);line-height:1.5;padding-bottom:60px}
+header{background:linear-gradient(135deg,#0F172A 0%,#1E3A8A 100%);color:#fff;padding:30px 20px 24px;text-align:center}
+.header-content{max-width:680px;margin:0 auto}
+.badge-top{display:inline-block;background:rgba(255,255,255,.15);padding:4px 12px;border-radius:20px;font-size:.8rem;font-weight:600;margin-bottom:10px;letter-spacing:.5px}
+header h1{font-size:1.8rem;font-weight:700;margin-bottom:6px}
+header p{color:#94A3B8;font-size:.95rem}
+.container{max-width:780px;margin:-18px auto 0;padding:0 16px}
+.search-box{background:var(--card);padding:12px 16px;border-radius:14px;box-shadow:0 4px 14px rgba(0,0,0,.08);display:flex;align-items:center;gap:10px;border:1px solid var(--border)}
+.search-box input{width:100%;border:none;outline:none;font-size:1rem;color:var(--text);background:transparent}
+.filters-wrapper{display:flex;align-items:center;gap:6px;margin:12px 0 8px}
+.filters-scroll{display:flex;gap:8px;overflow-x:auto;padding:6px 0;scrollbar-width:none;scroll-behavior:smooth;flex:1}
+.filters-scroll::-webkit-scrollbar{display:none}
+.scroll-arrow{background:#fff;border:1px solid var(--border);color:var(--muted);width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.25rem;cursor:pointer;flex-shrink:0;user-select:none}
+.scroll-arrow:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.filter-btn{background:#fff;border:1px solid var(--border);padding:8px 14px;border-radius:20px;font-size:.82rem;font-weight:600;color:var(--muted);white-space:nowrap;cursor:pointer;flex-shrink:0}
+.filter-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.stats-bar{display:flex;justify-content:space-between;margin:10px 4px 16px;font-size:.85rem;color:var(--muted);font-weight:500}
+.job-list{display:flex;flex-direction:column;gap:12px}
+.job-card{background:var(--card);border-radius:14px;padding:16px 18px;border:1px solid var(--border);box-shadow:0 2px 6px rgba(0,0,0,.03);display:flex;flex-direction:column;gap:10px}
+.card-top{display:flex;justify-content:space-between;align-items:center}
+.cat-tag{font-size:.75rem;font-weight:700;color:#fff;padding:4px 10px;border-radius:6px;text-transform:uppercase;letter-spacing:.4px}
+.job-date{font-size:.78rem;color:var(--muted);font-weight:600}
+.job-title{font-size:1.05rem;font-weight:700;line-height:1.35}
+.job-company{font-size:.88rem;color:var(--muted)}
+.postular-btn{display:block;width:100%;text-align:center;background:#1D4ED8;color:#fff;text-decoration:none;font-weight:700;font-size:.92rem;padding:12px;border-radius:10px;margin-top:4px}
+.postular-btn:hover{background:#1E40AF}
+.postular-btn.off{background:#94A3B8;cursor:not-allowed}
+.no-results{text-align:center;padding:50px 20px;color:var(--muted)}
+.sk{gap:12px}
+.sk i{display:block;border-radius:6px;background:linear-gradient(90deg,#E2E8F0 25%,#F1F5F9 50%,#E2E8F0 75%);background-size:200% 100%;animation:sh 1.2s infinite}
+@keyframes sh{to{background-position:-200% 0}}
+footer{max-width:680px;margin:40px auto 0;text-align:center;padding:0 20px;font-size:.8rem;color:var(--muted)}
+.disclaimer{background:#FEF3C7;border:1px solid #FDE68A;color:#92400E;padding:12px 16px;border-radius:10px;margin-bottom:16px;line-height:1.4;font-size:.82rem;text-align:left}
+</style>
 </head>
 <body>
+<header>
+  <div class="header-content">
+    <div class="badge-top">SANTIAGO Y REGIÓN METROPOLITANA</div>
+    <h1>Trabajo en Santiago</h1>
+    <p>Recuerda Tener Precaución en tus postulaciones</p>
+  </div>
+</header>
 
-  <header>
-    <div class="header-content">
-      <div class="badge-top">SANTIAGO Y REGIÓN METROPOLITANA</div>
-      <h1>Trabajo en Santiago</h1>
-      <p>Recuerda Tener Precaución en tus postulaciones</p>
+<main class="container">
+  <div class="search-box">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+    <input type="text" id="searchInput" placeholder="Buscar por cargo, empresa o palabra clave...">
+  </div>
+
+  <div class="filters-wrapper">
+    <button class="scroll-arrow" id="scrollLeft" aria-label="Izquierda">‹</button>
+    <div class="filters-scroll" id="filtersScroll">
+      <button class="filter-btn active" data-cat="all">Todas</button>
+      <button class="filter-btn" data-cat="Comercial">Comercial / Ventas</button>
+      <button class="filter-btn" data-cat="Salud">Salud</button>
+      <button class="filter-btn" data-cat="TECNICO">Técnicos</button>
+      <button class="filter-btn" data-cat="Logistica">Logística</button>
+      <button class="filter-btn" data-cat="Administrativo">Administrativo</button>
+      <button class="filter-btn" data-cat="Gastronomía">Gastronomía</button>
+      <button class="filter-btn" data-cat="Educación">Educación</button>
+      <button class="filter-btn" data-cat="Construcción">Construcción</button>
+      <button class="filter-btn" data-cat="Otros">Otros</button>
     </div>
-  </header>
+    <button class="scroll-arrow" id="scrollRight" aria-label="Derecha">›</button>
+  </div>
 
-  <main class="container">
-    <!-- Buscador en tiempo real -->
-    <div class="search-box">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="11" cy="11" r="8"></circle>
-        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-      </svg>
-      <input type="text" id="searchInput" placeholder="Buscar por cargo, empresa o palabra clave...">
-    </div>
+  <div class="stats-bar"><span id="jobCount">Cargando vacantes...</span><span>Región Metropolitana</span></div>
 
-    <!-- Filtros de categoría con flechas de desplazamiento -->
-    <div class="filters-wrapper">
-      <button class="scroll-arrow" id="scrollLeft" title="Desplazar a la izquierda">‹</button>
-      
-      <div class="filters-scroll" id="filtersScroll">
-        <button class="filter-btn active" data-cat="all">Todas</button>
-        <button class="filter-btn" data-cat="Comercial">Comercial / Ventas</button>
-        <button class="filter-btn" data-cat="Salud">Salud</button>
-        <button class="filter-btn" data-cat="TECNICO">Técnicos</button>
-        <button class="filter-btn" data-cat="Logistica">Logística</button>
-        <button class="filter-btn" data-cat="Administrativo">Administrativo</button>
-        <button class="filter-btn" data-cat="Gastronomía">Gastronomía</button>
-        <button class="filter-btn" data-cat="Educación">Educación</button>
-        <button class="filter-btn" data-cat="Construcción">Construcción</button>
-        <button class="filter-btn" data-cat="Otros">Otros</button>
-      </div>
+  <div class="job-list" id="jobList">
+    <div class="job-card sk"><i style="height:22px;width:35%"></i><i style="height:20px;width:80%"></i><i style="height:16px;width:50%"></i><i style="height:44px"></i></div>
+    <div class="job-card sk"><i style="height:22px;width:30%"></i><i style="height:20px;width:70%"></i><i style="height:16px;width:45%"></i><i style="height:44px"></i></div>
+    <div class="job-card sk"><i style="height:22px;width:40%"></i><i style="height:20px;width:75%"></i><i style="height:16px;width:55%"></i><i style="height:44px"></i></div>
+  </div>
+  <div class="no-results" id="noResults" style="display:none"><p>No se encontraron vacantes para este criterio de búsqueda.</p></div>
 
-      <button class="scroll-arrow" id="scrollRight" title="Desplazar a la derecha">›</button>
-    </div>
+  <footer>
+    <div class="disclaimer"><strong>⚠️ Información Importante:</strong> Nosotros no gestionamos postulaciones, no recibimos currículums ni representamos a las empresas contratantes. Nunca transfieras dinero para participar en procesos de selección.</div>
+    <p>© Trabajo en Santiago • Comunidad de empleo regional</p>
+  </footer>
+</main>
 
-    <!-- Contador de vacantes -->
-    <div class="stats-bar">
-      <span id="jobCount">Cargando vacantes...</span>
-      <span>Región Metropolitana</span>
-    </div>
+<script>
+const CACHE_KEY = 'ofertas_santiago_v1';
+const CAT_COLORS = {comercial:'#FF8A00',ventas:'#FF8A00',retail:'#FF8A00',tecnico:'#00CED1',técnico:'#00CED1',mantenimiento:'#00CED1',mantencion:'#00CED1',logistica:'#D4AC0D',logística:'#D4AC0D',bodega:'#D4AC0D',administrativo:'#1565D8',oficina:'#1565D8',rrhh:'#1565D8',salud:'#2EAF62',tens:'#2EAF62',construccion:'#FF0000',construcción:'#FF0000',educacion:'#9C27B0',educación:'#9C27B0',gastronomia:'#795548',gastronomía:'#795548',cocina:'#795548',otros:'#999999'};
 
-    <!-- Estado de carga -->
-    <div class="loading-state" id="loadingState">
-      <div class="spinner"></div>
-      <p>Cargando todas las ofertas de empleo...</p>
-    </div>
+let jobsData = [], activeCategory = 'all', searchQuery = '';
+const $ = id => document.getElementById(id);
 
-    <!-- Listado de Empleos -->
-    <div class="job-list" id="jobList" style="display: none;"></div>
-    <div class="no-results" id="noResults" style="display: none;">
-      <p>No se encontraron vacantes para este criterio de búsqueda.</p>
-    </div>
+function esc(s){return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function colorOf(cat){const l = String(cat || '').toLowerCase(); for (const [k,v] of Object.entries(CAT_COLORS)) if (l.includes(k)) return v; return '#999999';}
 
-    <footer>
-      <div class="disclaimer">
-        <strong>⚠️ Información Importante:</strong> Nosotros no gestionamos postulaciones, no recibimos currículums ni representamos a las empresas contratantes. Nunca transfieras dinero para participar en procesos de selección.
-      </div>
-      <p>© Trabajo en Santiago • Comunidad de empleo regional</p>
-    </footer>
-  </main>
+function renderJobs(){
+  const q = searchQuery, cat = activeCategory.toLowerCase();
+  const list = jobsData.filter(j => {
+    const catTxt = String(j.cat || '').toLowerCase();
+    const txt = `${j.cargo || ''} ${j.empresa || ''} ${catTxt}`.toLowerCase();
+    return txt.includes(q) && (cat === 'all' || catTxt.includes(cat));
+  });
+  $('jobCount').textContent = `${list.length} vacante${list.length === 1 ? '' : 's'} disponible${list.length === 1 ? '' : 's'}`;
+  if (!list.length){ $('jobList').innerHTML = ''; $('noResults').style.display = 'block'; return; }
+  $('noResults').style.display = 'none';
+  $('jobList').innerHTML = list.map(j => {
+    const ok = j.url && String(j.url).startsWith('http');
+    return `<div class="job-card">
+      <div class="card-top"><span class="cat-tag" style="background:${colorOf(j.cat)}">${esc(j.cat)}</span><span class="job-date">${esc(j.fecha)}</span></div>
+      <div class="job-title">${esc(j.cargo)}</div>
+      <div class="job-company"><span>🏢</span> ${esc(j.empresa || 'Empresa confidencial')}</div>
+      ${ok ? `<a href="${esc(j.url)}" target="_blank" rel="noopener noreferrer" class="postular-btn">POSTULAR AL EMPLEO →</a>` : `<span class="postular-btn off">POSTULACIÓN NO DISPONIBLE</span>`}
+    </div>`;
+  }).join('');
+}
 
-  <script>
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwI86L8yxSr3gWn7ycNePNroIRG55_MYnEEQ8Kp-4c03lSNO8b0rGZADiiTwcuB2O3NRQ/exec";
+$('searchInput').addEventListener('input', e => { searchQuery = e.target.value.toLowerCase().trim(); renderJobs(); });
+document.querySelectorAll('.filter-btn').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.filter-btn').forEach(x => x.classList.remove('active'));
+  b.classList.add('active'); activeCategory = b.dataset.cat; renderJobs();
+}));
+const sc = $('filtersScroll');
+$('scrollLeft').onclick = () => sc.scrollBy({left:-220,behavior:'smooth'});
+$('scrollRight').onclick = () => sc.scrollBy({left:220,behavior:'smooth'});
+sc.addEventListener('wheel', e => { if (e.deltaY){ e.preventDefault(); sc.scrollLeft += e.deltaY; } }, {passive:false});
 
-    const CAT_COLORS = {
-      'comercial': '#FF8A00',
-      'ventas': '#FF8A00',
-      'retail': '#FF8A00',
-      'tecnico': '#00CED1',
-      'técnico': '#00CED1',
-      'mantenimiento': '#00CED1',
-      'mantencion': '#00CED1',
-      'logistica': '#D4AC0D',
-      'logística': '#D4AC0D',
-      'bodega': '#D4AC0D',
-      'administrativo': '#1565D8',
-      'oficina': '#1565D8',
-      'rrhh': '#1565D8',
-      'salud': '#2EAF62',
-      'tens': '#2EAF62',
-      'construccion': '#FF0000',
-      'construcción': '#FF0000',
-      'educacion': '#9C27B0',
-      'educación': '#9C27B0',
-      'gastronomia': '#795548',
-      'gastronomía': '#795548',
-      'cocina': '#795548',
-      'otros': '#999999'
-    };
+// 1) Mostrar al instante lo último guardado en el navegador
+try {
+  const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
+  if (Array.isArray(cached) && cached.length){ jobsData = cached; renderJobs(); }
+} catch(e){}
 
-    let jobsData = [];
-    let activeCategory = 'all';
-    let searchQuery = '';
-
-    function getCategoryColor(cat) {
-      const lower = String(cat || '').toLowerCase();
-      for (const [key, color] of Object.entries(CAT_COLORS)) {
-        if (lower.includes(key)) return color;
-      }
-      return '#999999';
+// 2) Traer la lista actualizada (archivo ofertas.json, rápido)
+fetch('ofertas.json?v=' + Math.floor(Date.now() / 300000))
+  .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then(data => {
+    if (!Array.isArray(data) || !data.length) throw new Error('vacío');
+    jobsData = data; renderJobs();
+    try { localStorage.setItem(CACHE_KEY, JSON.stringify(data)); } catch(e){}
+  })
+  .catch(() => {
+    if (!jobsData.length){
+      $('jobList').innerHTML = '';
+      $('jobCount').textContent = '';
+      $('noResults').innerHTML = '<p style="color:#DC2626">No se pudieron cargar las ofertas. Recarga la página en unos minutos.</p>';
+      $('noResults').style.display = 'block';
     }
-
-    function renderJobs() {
-      const jobList = document.getElementById('jobList');
-      const noResults = document.getElementById('noResults');
-      const jobCount = document.getElementById('jobCount');
-
-      const filtered = jobsData.filter(job => {
-        const text = `${job.cargo} ${job.empresa} ${job.cat}`.toLowerCase();
-        const matchSearch = text.includes(searchQuery);
-        const matchCategory = activeCategory === 'all' || 
-          job.cat.toLowerCase().includes(activeCategory.toLowerCase());
-
-        return matchSearch && matchCategory;
-      });
-
-      jobCount.textContent = `${filtered.length} vacante${filtered.length === 1 ? '' : 's'} disponible${filtered.length === 1 ? '' : 's'}`;
-
-      if (filtered.length === 0) {
-        jobList.innerHTML = '';
-        noResults.style.display = 'block';
-        return;
-      }
-
-      noResults.style.display = 'none';
-      jobList.innerHTML = filtered.map(job => {
-        const color = getCategoryColor(job.cat);
-        const hasUrl = job.url && job.url.startsWith('http');
-        return `
-          <div class="job-card">
-            <div class="card-top">
-              <span class="cat-tag" style="background: ${color}">${job.cat}</span>
-              <span class="job-date">${job.fecha || ''}</span>
-            </div>
-            <div class="job-title">${job.cargo}</div>
-            <div class="job-company">
-              <span>🏢</span> ${job.empresa || 'Empresa confidencial'}
-            </div>
-            ${
-              hasUrl ? 
-              `<a href="${job.url}" target="_blank" rel="noopener noreferrer" class="postular-btn">POSTULAR AL EMPLEO →</a>` :
-              `<span class="postular-btn" style="background: #94A3B8; cursor: not-allowed;">POSTULACIÓN NO DISPONIBLE</span>`
-            }
-          </div>
-        `;
-      }).join('');
-    }
-
-    // Buscador
-    document.getElementById('searchInput').addEventListener('input', (e) => {
-      searchQuery = e.target.value.toLowerCase().trim();
-      renderJobs();
-    });
-
-    // Filtros de categoría
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        activeCategory = btn.dataset.cat;
-        renderJobs();
-      });
-    });
-
-    // Control de flechas para desplazar categorías en PC
-    const scrollContainer = document.getElementById('filtersScroll');
-    document.getElementById('scrollLeft').addEventListener('click', () => {
-      scrollContainer.scrollBy({ left: -220, behavior: 'smooth' });
-    });
-    document.getElementById('scrollRight').addEventListener('click', () => {
-      scrollContainer.scrollBy({ left: 220, behavior: 'smooth' });
-    });
-
-    // Soporte para rueda del mouse en PC sobre las categorías
-    scrollContainer.addEventListener('wheel', (e) => {
-      if (e.deltaY !== 0) {
-        e.preventDefault();
-        scrollContainer.scrollLeft += e.deltaY;
-      }
-    });
-
-    // Carga de datos desde Apps Script
-    async function loadJobs() {
-      const loadingState = document.getElementById('loadingState');
-      const jobList = document.getElementById('jobList');
-
-      try {
-        const res = await fetch(APPS_SCRIPT_URL);
-        const data = await res.json();
-        
-        if (Array.isArray(data) && data.length > 0) {
-          jobsData = data;
-          loadingState.style.display = 'none';
-          jobList.style.display = 'flex';
-          renderJobs();
-        } else {
-          loadingState.innerHTML = '<p>No se encontraron vacantes registradas en la planilla.</p>';
-        }
-      } catch (err) {
-        console.error(err);
-        loadingState.innerHTML = '<p style="color: #DC2626;">Hubo un problema al cargar las ofertas. Por favor recarga la página.</p>';
-      }
-    }
-
-    loadJobs();
-  </script>
+  });
+</script>
 </body>
 </html>
